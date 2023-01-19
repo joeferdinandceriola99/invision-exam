@@ -30,6 +30,23 @@ const cards = [
   },
 ];
 
+let modalShowing = false;
+
+const closeBtn = document.querySelector(".close");
+
+function showModal(title, text, modalImage) {
+  modalShowing = true;
+  document.getElementById("myModal").style.display = "grid";
+  document.querySelector(".modal__content_title").innerHTML = title;
+  document.querySelector(".modal__content_text").innerHTML = text;
+  document.querySelector(".modal__content_image").src = modalImage;
+}
+
+function hideModal() {
+  modalShowing = false;
+  document.getElementById("myModal").style.display = "none";
+}
+
 const cardElement = (header, text, cardImage) => {
   const item = document.createElement("div");
   item.className = "card";
@@ -52,7 +69,12 @@ const cardElement = (header, text, cardImage) => {
 
   const readMore = document.createElement("button");
   readMore.innerHTML = "READ MORE";
+  readMore.addEventListener("click", () =>
+    modalShowing ? hideModal() : showModal(header, text, cardImage)
+  );
   contents.appendChild(readMore);
+
+  closeBtn.addEventListener("click", hideModal);
 
   document.querySelector(".two__card_container").appendChild(item);
 };
