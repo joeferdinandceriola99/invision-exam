@@ -1,0 +1,294 @@
+@font-face {
+  font-family: "Open Sans";
+  src: url("/assets/OpenSans/OpenSans-Regular.ttf");
+  src: url("/assets/OpenSans/OpenSans-Light.ttf") format("truetype"),
+    url("/assets/OpenSans/OpenSans-Semibold.ttf") format("truetype"),
+    url("/assets/OpenSans/OpenSans-Bold.ttf") format("truetype"),
+    url("/assets/OpenSans/OpenSans-Medium.ttf") format("truetype");
+  font-weight: 100 800;
+}
+
+@font-face {
+  font-family: "Open Sans_Condensed";
+  src: url("/assets/OpenSans_Condensed/OpenSans_Condensed-Regular.ttf");
+  src: url("/assets/OpenSans_Condensed/OpenSans_Condensed-Light.ttf")
+      format("truetype"),
+    url("/assets/OpenSans_Condensed/OpenSans_Condensed-Semibold.ttf")
+      format("truetype"),
+    url("/assets/OpenSans_Condensed/OpenSans_Condensed-Bold.ttf")
+      format("truetype"),
+    url("/assets/OpenSans_Condensed/OpenSans_Condensed-Medium.ttf")
+      format("truetype");
+}
+
+@font-face {
+  font-family: "Open Sans_SemiCondensed";
+  src: url("/assets/OpenSans_SemiCondensed/OpenSans_SemiCondensed-Regular.ttf");
+  src: url("/assets/OpenSans_SemiCondensed/OpenSans_SemiCondensed-Light.ttf")
+      format("truetype"),
+    url("/assets/OpenSans_SemiCondensed/OpenSans_SemiCondensed-Semibold.ttf")
+      format("truetype"),
+    url("/assets/OpenSans_SemiCondensed/OpenSans_SemiCondensed-Bold.ttf")
+      format("truetype"),
+    url("/assets/OpenSans_SemiCondensed/OpenSans_SemiCondensed-Medium.ttf")
+      format("truetype");
+}
+
+$bg-color: #0e1414;
+$primary-color: #fff;
+$seconday-color: #cf1430;
+$gray: #dfe0e0;
+
+$gap: 16px;
+$default-num-cols: 12;
+$row-height: 300px;
+
+$tablet-size: 480px;
+$laptop-size: 768px;
+$desktop-size: 1024px;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: $bg-color;
+  color: $primary-color;
+
+  font-family: "Open Sans";
+  font-weight: 100;
+  font-size: 16px;
+}
+
+.components {
+  min-height: 100vh;
+  max-width: $desktop-size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $gap;
+  margin: 0 auto;
+
+  margin-bottom: calc($gap * 10);
+
+  @media (min-width: $tablet-size) {
+    margin-bottom: 0;
+  }
+}
+
+.one {
+  display: grid;
+
+  gap: $gap;
+
+  @media (min-width: $tablet-size) {
+    grid-template-columns: repeat($default-num-cols, 1fr);
+    grid-template-rows: 1fr 1fr;
+  }
+
+  @media (min-width: $laptop-size) {
+    grid-template-rows: auto;
+  }
+
+  &__images {
+    width: 100%;
+    height: 100%;
+
+    grid-column: span 4;
+
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      transition: all 0.6s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    @media (min-width: $tablet-size) {
+      &.one {
+        position: relative;
+        img {
+          position: absolute;
+        }
+      }
+    }
+
+    @media (min-width: $laptop-size) {
+      &.one {
+        grid-row: span 2;
+      }
+
+      &.three {
+        grid-column-start: 5;
+        grid-column-end: 9;
+        grid-row: 2;
+      }
+    }
+  }
+
+  &__contents {
+    width: 100%;
+
+    grid-row: 1;
+
+    @media (min-width: $tablet-size) {
+      grid-column-start: 1;
+      grid-column-end: 12;
+    }
+
+    @media (min-width: $laptop-size) {
+      grid-column: span 4;
+      grid-row: span 2;
+    }
+
+    &_main {
+      margin-bottom: 3rem;
+
+      h1 {
+        font-size: 1.3rem;
+        font-weight: 100;
+        line-height: 3rem;
+        margin-bottom: 1.5rem;
+
+        position: relative;
+
+        &::after {
+          content: "";
+          height: 2px;
+          background-color: $primary-color;
+
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
+      }
+      p {
+        line-height: 1.5rem;
+        font-family: "Open Sans_SemiCondensed";
+        font-weight: 100;
+        font-size: 0.9rem;
+
+        color: $gray;
+      }
+    }
+
+    &_note {
+      margin-bottom: calc($gap * 3);
+
+      h3 {
+        font-size: 0.85rem;
+        font-family: "Open Sans_SemiCondensed";
+        font-weight: bold;
+        letter-spacing: 0.1rem;
+        color: $seconday-color;
+
+        margin-bottom: $gap;
+      }
+
+      p {
+        // letter-spacing: 0.1rem;
+        font-size: 1rem;
+        font-weight: bolder;
+      }
+    }
+  }
+}
+
+.two {
+  width: 100%;
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+
+    margin-bottom: calc($gap * 5);
+  }
+
+  &__card_container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: calc($gap * 5);
+
+    @media (min-width: $desktop-size) {
+      flex-direction: row;
+      gap: calc($gap * 2);
+    }
+
+    .card {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+
+      @media (min-width: $laptop-size) {
+        flex-direction: row;
+      }
+
+      @media (min-width: $desktop-size) {
+        flex-direction: column;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      .contents {
+        h3 {
+          font-size: medium;
+          font-weight: bold;
+          font-family: "Open Sans_SemiCondensed";
+
+          margin: $gap 0;
+        }
+
+        p {
+          font-size: small;
+          font-weight: 100;
+          color: $gray;
+          margin: $gap 0;
+        }
+
+        button {
+          font-size: small;
+          font-weight: bold;
+          font-family: "Open Sans_SemiCondensed";
+          letter-spacing: 1px;
+          line-height: 2rem;
+
+          background: transparent;
+          color: $primary-color;
+          border: 0;
+
+          cursor: pointer;
+
+          position: relative;
+
+          &:after {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            height: 1px;
+            background-color: $seconday-color;
+          }
+        }
+      }
+    }
+  }
+}
